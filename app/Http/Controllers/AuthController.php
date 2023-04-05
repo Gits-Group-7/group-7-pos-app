@@ -15,4 +15,9 @@ class AuthController extends Controller
     {
         return view('pages.auth.login');
     }
+
+    public function dashboard()
+    {
+        return view('pages.admin.dashboard');
+    }
 }

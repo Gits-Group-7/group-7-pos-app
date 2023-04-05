@@ -80,8 +80,12 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">
-                        <i class="ti-settings text-primary"></i>
-                        Settings
+                        <i class="ti-user text-primary"></i>
+                        Account
+                    </a>
+                    <a href="/" class="dropdown-item">
+                        <i class="ti-home text-primary"></i>
+                        Beranda
                     </a>
                     <a class="dropdown-item">
                         <i class="ti-power-off text-primary"></i>

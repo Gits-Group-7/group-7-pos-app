@@ -10,7 +10,7 @@
             <div class="col-md-12 grid-margin">
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Selamat Datang Admin</h3>
+                        <h3 class="font-weight-bold">Selamat Datang {{ Auth::user()->name }}</h3>
                         <h6 class="font-weight-normal mb-0 text-secondary mt-3">Selamat datang di Dashboard
                             - Panel Manajemen Data Admin,
                             <span class="text-primary"><b>yuk mulai manage data kamu 😊</b></span>

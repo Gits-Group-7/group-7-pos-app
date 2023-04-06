@@ -16,18 +16,32 @@
                             </div>
                             <h4>Hai, kamu kembali lagi..</h4>
                             <h6 class="font-weight-light text-secondary mt-2">Selamat datang kembali..</h6>
-                            <form class="pt-3">
+
+                            <form action="{{ route('do.login') }}" method="POST" class="pt-3">
+                                @csrf
+
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg rounded" id="email"
-                                        placeholder="Email" name="email">
+                                    <input type="email"
+                                        class="form-control form-control-lg rounded @error('email') is-invalid @enderror"
+                                        id="email" placeholder="Email" name="email">
+                                    @error('email')
+                                        <div id="emailHelp" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg rounded" id="password"
-                                        placeholder="Password" name="password">
+                                    <input type="password"
+                                        class="form-control form-control-lg rounded @error('password') is-invalid @enderror"
+                                        id="password" placeholder="Password" name="password">
+                                    @error('password')
+                                        <div id="passwordHelp" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="">SIGN IN</a>
+                                    <button type="submit"
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
+                                        IN</button>
                                 </div>
 
                                 <div class="text-center mt-4 font-weight-light">

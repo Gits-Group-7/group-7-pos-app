@@ -87,7 +87,7 @@
                         <i class="ti-home text-primary"></i>
                         Beranda
                     </a>
-                    <a class="dropdown-item">
+                    <a href="{{ route('logout.page') }}" class="dropdown-item">
                         <i class="ti-power-off text-primary"></i>
                         Logout
                     </a>

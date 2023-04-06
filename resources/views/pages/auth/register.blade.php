@@ -18,23 +18,44 @@
                             <h6 class="font-weight-light text-secondary mt-2">
                                 Selamat datang pengguna baru
                             </h6>
-                            <form action="" class="pt-3" method="POST">
+                            <form action="{{ route('do.register') }}" class="pt-3" method="POST">
+                                @csrf
+
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg rounded" id="name"
-                                        placeholder="Username" name="name">
+                                    <input type="text"
+                                        class="form-control form-control-lg rounded @error('name') is-invalid @enderror"
+                                        id="name" placeholder="Name" name="name">
+                                    @error('name')
+                                        <div id="nameHelp" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg rounded" id="email"
-                                        placeholder="Email" name="email">
+                                    <input type="email"
+                                        class="form-control form-control-lg rounded @error('email') is-invalid @enderror"
+                                        id="email" placeholder="Email" name="email">
+                                    @error('email')
+                                        <div id="emailHelp" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg rounded" id="password"
-                                        placeholder="Password" name="password">
+                                    <input type="password"
+                                        class="form-control form-control-lg rounded @error('password') is-invalid @enderror"
+                                        id="password" placeholder="Password" name="password">
+                                    @error('password')
+                                        <div id="passwordHelp" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg rounded"
+                                    <input type="password"
+                                        class="form-control form-control-lg rounded @error('password_confirmation') is-invalid @enderror"
                                         id="password_confirmation" placeholder="Confirm Password"
                                         name="password_confirmation">
+                                    @error('password_confirmation')
+                                        <div id="passwordConfirmationHelp" class="form-text">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="mt-3">

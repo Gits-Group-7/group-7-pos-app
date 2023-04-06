@@ -19,6 +19,11 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
+        //  melakukan pengecekan jika user sudah login namun mengakses halaman login dan register
+        if (Auth::check() && Auth::user()) {
+            return redirect()->route('admin.dashboard');
+        }
+
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {

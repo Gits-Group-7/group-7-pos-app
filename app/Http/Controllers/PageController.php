@@ -20,4 +20,9 @@ class PageController extends Controller
     {
         return view('template.chart');
     }
+
+    public function berandaPage()
+    {
+        return view('pages.customer.beranda');
+    }
 }

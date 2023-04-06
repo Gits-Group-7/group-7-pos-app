@@ -33,9 +33,9 @@
             </a>
             <div class="collapse" id="category-nav">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="">Index Kategori</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('category.index') }}">Index Kategori</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="">Tambah
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('category.create') }}">Tambah
                             Kategori</a></li>
                 </ul>
             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin-button', [PageController::class, 'buttonPage'])->name('admin.button');
     Route::get('/admin-form', [PageController::class, 'formPage'])->name('admin.form');
     Route::get('/admin-chart', [PageController::class, 'chartPage'])->name('admin.chart');
+
+    // Route Category
+    Route::get('/index-kategori', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/tambah-kategori', [CategoryController::class, 'create'])->name('category.create');
+    Route::get('/edit-kategori/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::get('/hapus-kategori/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::post('/simpan-kategori', [CategoryController::class, 'store'])->name('category.store');
+    Route::put('/ubah-kategori/{id}', [CategoryController::class, 'update'])->name('category.update');
 });

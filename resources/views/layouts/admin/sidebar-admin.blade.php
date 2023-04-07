@@ -17,9 +17,9 @@
             </a>
             <div class="collapse" id="product-nav">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="">Index Produk</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('product.index') }}">Index Produk</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="">Tambah Produk</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('product.create') }}">Tambah Produk</a>
                     </li>
                 </ul>
             </div>

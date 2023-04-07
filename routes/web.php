@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // Route Beranda Cuustomer
@@ -35,8 +36,12 @@ Route::middleware(['auth'])->group(function () {
     // Route Category
     Route::get('/index-kategori', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/tambah-kategori', [CategoryController::class, 'create'])->name('category.create');
-    Route::get('/edit-kategori/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::get('/hapus-kategori/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-    Route::post('/simpan-kategori', [CategoryController::class, 'store'])->name('category.store');
-    Route::put('/ubah-kategori/{id}', [CategoryController::class, 'update'])->name('category.update');
+    // Route::get('/edit-kategori/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    // Route::get('/hapus-kategori/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    // Route::post('/simpan-kategori', [CategoryController::class, 'store'])->name('category.store');
+    // Route::put('/ubah-kategori/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+    // Route Produk
+    Route::get('/index-produk', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/tambah-produk', [ProductController::class, 'create'])->name('product.create');
 });

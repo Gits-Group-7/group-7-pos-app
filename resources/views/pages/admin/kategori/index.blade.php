@@ -55,65 +55,67 @@
                                             <th width="25%" class="text-center">Nama</th>
                                             <th class="text-center">Deskripsi</th>
                                             <th width="15%" class="text-center">Status</th>
-                                            <th class="text-center">Option</th>
+                                            <th width="15%" class="text-center">Option</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="shadow-sm">
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">Makanan</td>
-                                            <td class="text-center">Kategori makanan meliputi makanan ringan dan berat</td>
-                                            <td class="text-center">Aktif</td>
-                                            <td class="text-center">
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                                    <a href="" type="button"
-                                                        class="btn btn-inverse-success py-3 px-3">Edit</a>
-                                                    <button type="button" class="btn btn-inverse-danger py-3 px-3"
-                                                        data-toggle="modal" data-target="#exampleModal">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="shadow-sm">
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">Minuman</td>
-                                            <td class="text-center">Kategori minuman meliputi minuman kaleng dan air</td>
-                                            <td class="text-center">Tidak Aktif</td>
-                                            <td class="text-center">
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                                    <a href="" type="button"
-                                                        class="btn btn-inverse-success py-3 px-3">Edit</a>
-                                                    <button type="button" class="btn btn-inverse-danger py-3 px-3"
-                                                        data-toggle="modal" data-target="#exampleModal">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @php
+                                            $no = 1;
+                                        @endphp
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Kategori "Nama
-                                                            Kategori"</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                        @foreach ($categories as $item)
+                                            <tr class="shadow-sm">
+                                                <td class="text-center">{{ $no }}</td>
+                                                <td class="text-center">{{ $item->name }}</td>
+                                                <td class="text-center">{{ $item->description }}</td>
+                                                <td class="text-center">{{ $item->status }}</td>
+                                                <td class="text-center">
+                                                    <div class="btn-group-vertical" role="group"
+                                                        aria-label="Basic example">
+                                                        <a href="{{ route('category.edit', $item->id) }}" type="button"
+                                                            class="btn btn-inverse-success py-3 px-3">Edit</a>
+                                                        <button type="button" class="btn btn-inverse-danger py-3 px-3"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal{{ $item->id }}">Delete</button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <p>
-                                                            Nama : Makanan<br>
-                                                            Status : Aktif </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <a href="" type="button" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Kategori
+                                                                <b>"{{ $item->name }}"</b>
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                                Nama : {{ $item->name }}<br>
+                                                                Description : {{ $item->description }}<br>
+                                                                Status : {{ $item->status }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('category.destroy', $item->id) }}"
+                                                                type="button" class="btn btn-danger">Delete</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+
+                                            @php
+                                                $no++;
+                                            @endphp
+                                        @endforeach
 
                                     </tbody>
                                 </table>

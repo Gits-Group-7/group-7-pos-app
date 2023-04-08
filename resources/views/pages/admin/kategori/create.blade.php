@@ -37,36 +37,49 @@
                 <div class="card-body">
                     <h4 class="card-title">Form Kategori</h4>
                     <div class="row">
+
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="" class="forms-sample" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ $action }}" class="forms-sample" method="POST">
                                         @csrf
 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="name">Nama</label>
-                                                    <input type="text" class="form-control" id="name"
-                                                        placeholder="Nama Kategori" name="name">
+                                                    <input type="text"
+                                                        class="form-control  @error('name') is-invalid @enderror"
+                                                        id="name" placeholder="Nama Kategori" name="name">
                                                 </div>
+                                                @if ($errors->has('name'))
+                                                    <div class="invalid feedback text-danger mb-3">
+                                                        *field nama harus di isi
+                                                    </div>
+                                                @endif
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="status">Status</label>
-                                                    <select class="form-control" id="status" name="status">
-                                                        <option>Pilih Status Kategori</option>
+                                                    <select class="form-control @error('status') is-invalid @enderror"
+                                                        id="status" name="status">
+                                                        <option value="">Pilih Status Kategori</option>
                                                         <option value="Aktif">Aktif</option>
                                                         <option value="Tidak Aktif">Tidak Aktif</option>
                                                     </select>
                                                 </div>
+                                                @if ($errors->has('status'))
+                                                    <div class="invalid feedback text-danger mb-3">
+                                                        *option status harus di pilih
+                                                    </div>
+                                                @endif
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="description">Deskripsi</label>
-                                                    <textarea class="form-control" id="description" rows="4" name="description" placeholder="Deskripsi Kategori"></textarea>
+                                                    <label for="description">Description</label>
+                                                    <textarea class="form-control" id="description" rows="3" name="description" placeholder="Deskripsi Kategori"></textarea>
                                                 </div>
                                             </div>
                                         </div>

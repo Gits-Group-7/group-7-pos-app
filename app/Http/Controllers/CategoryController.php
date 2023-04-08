@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,7 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.kategori.index');
+        $data = [
+            'categories' => Category::orderBy('created_at', 'asc')->get(),
+        ];
+
+        return view('pages.admin.kategori.index', $data);
     }
 
     /**
@@ -23,7 +28,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.kategori.create');
+        $data = [
+            'action' => route('category.store'),
+        ];
+
+        return view('pages.admin.kategori.create', $data);
     }
 
     /**
@@ -34,7 +43,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->description);
+
+        // validasi field
+        $validated = $request->validate([
+            'name' => 'required',
+            'status' => 'required',
+        ]);
+
+        // insert data category
+        Category::create([
+            'name' => $validated['name'],
+            'description' => $request->description,
+            'status' => $validated['status'],
+        ]);
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -56,7 +80,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'category'  => Category::find($id),
+            'action' => route('category.update', $id),
+        ];
+
+        return view('pages.admin.kategori.form', $data);
     }
 
     /**
@@ -68,7 +97,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validasi field
+        $validated = $request->validate([
+            'name' => 'required',
+            'status' => 'required',
+        ]);
+
+        // update data caetegory
+        Category::where('id', $id)->update([
+            'name' => $validated['name'],
+            'description' => $request->description,
+            'status' => $validated['status'],
+        ]);
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -79,6 +121,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Category::findOrFail($id);
+        $data->delete();
+
+        return redirect()->route('category.index');
     }
 }

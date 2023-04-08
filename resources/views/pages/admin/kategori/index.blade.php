@@ -103,7 +103,7 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
+                                                            <button type="button" class="btn btn-primary"
                                                                 data-dismiss="modal">Close</button>
                                                             <a href="{{ route('category.destroy', $item->id) }}"
                                                                 type="button" class="btn btn-danger">Delete</a>
@@ -129,10 +129,10 @@
 @endsection
 
 @section('script')
-    {{-- AOS init --}}
-    {{-- <script>
+    {{-- Datatable init --}}
+    <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
-    </script> --}}
+    </script>
 @endsection

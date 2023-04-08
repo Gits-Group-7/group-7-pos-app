@@ -49,7 +49,7 @@
                             <a href="{{ route('product.index') }}" class="menu-card">
                                 <div class="card-body">
                                     <p class="mb-4 font-weight-bold">Manajemen Produk</p>
-                                    <p class="fs-30 mb-2">4006</p>
+                                    <p class="fs-30 mb-2">{{ $productsCount }}</p>
                                     <p>CRUD Data Product</p>
                                 </div>
                             </a>
@@ -60,7 +60,7 @@
                             <a href="{{ route('category.index') }}" class="menu-card">
                                 <div class="card-body">
                                     <p class="mb-4 font-weight-bold">Manajemen Kategori</p>
-                                    <p class="fs-30 mb-2">61344</p>
+                                    <p class="fs-30 mb-2">{{ $categoriesCount }}</p>
                                     <p>CRUD Data Category</p>
                                 </div>
                             </a>

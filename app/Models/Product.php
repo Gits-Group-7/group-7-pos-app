@@ -35,7 +35,7 @@ class Product extends Model
         'price',
         'stock',
         'description',
-        'guarantee',
+        'warranty',
         'condition',
         'status',
     ];

@@ -22,7 +22,8 @@
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">Form Update Data Kategori</strong>
-                            <p class="mt-2 text-secondary">Silahkan ganti field sesuai dengan yang Anda perlukan.</p>
+                            <p class="mt-2 text-secondary">Silahkan ganti field data Kategori sesuai dengan yang Anda
+                                perlukan.</p>
                         </div>
                     </div>
                 </div>

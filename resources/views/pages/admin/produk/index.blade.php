@@ -4,6 +4,14 @@
     <title>Index Produk | POS APP</title>
 @endsection
 
+@php
+    function priceConversion($price)
+    {
+        $formattedPrice = number_format($price, 0, ',', '.');
+        return $formattedPrice;
+    }
+@endphp
+
 @section('content')
     <div class="content mt-3">
         <div class="animated fadeIn">
@@ -56,59 +64,79 @@
                                             <th class="text-center" width="15%">Foto</th>
                                             <th class="text-center">Kategori</th>
                                             <th class="text-center">Harga</th>
-                                            <th class="text-center">Stock</th>
+                                            <th class="text-center">Stok</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Option</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="shadow-sm">
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">Asus ROG Code Zero-XZ</td>
-                                            <td class="td-center">
-                                                <img src="{{ asset('images/laptop.webp') }}" class="img-fluid rounded"
-                                                    alt="">
-                                            </td>
-                                            <td class="text-center">Laptop</td>
-                                            <td class="text-center">IDR 15.500.000</td>
-                                            <td class="text-center">25</td>
-                                            <td class="text-center">Ready</td>
-                                            <td class="text-center">
-                                                <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                                    <a href="" type="button"
-                                                        class="btn btn-inverse-success py-3 px-3">Edit</a>
-                                                    <button type="button" class="btn btn-inverse-danger py-3 px-3"
-                                                        data-toggle="modal" data-target="#exampleModal">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @php
+                                            $no = 1;
+                                        @endphp
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Produk "Nama
-                                                            Produk"</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                        @foreach ($products as $item)
+                                            <tr class="shadow-sm">
+                                                <td class="text-center">{{ $no }}</td>
+                                                <td class="text-center">{{ $item->name }}</td>
+                                                <td class="td-center">
+                                                    <img src="{{ Storage::url($item->photo) }}" class="img-fluid rounded"
+                                                        alt="{{ $item->name }}">
+                                                </td>
+                                                <td class="text-center">{{ $item->category->name }}</td>
+                                                <td class="text-center">IDR {{ priceConversion($item->price) }}</td>
+                                                <td class="text-center">{{ $item->stock }}</td>
+                                                <td class="text-center">{{ $item->status }}</td>
+                                                <td class="text-center">
+                                                    <div class="btn-group-vertical" role="group"
+                                                        aria-label="Basic example">
+                                                        <a href="{{ route('product.edit', $item->id) }}" type="button"
+                                                            class="btn btn-inverse-success py-3 px-3">Edit</a>
+                                                        <button type="button" class="btn btn-inverse-danger py-3 px-3"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal{{ $item->id }}">Delete</button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <p>
-                                                            Nama : Makanan<br>
-                                                            Status : Aktif </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <a href="" type="button" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Produk
+                                                                <b>"{{ $item->name }}"</b>
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                                <img src="{{ Storage::url($item->photo) }}"
+                                                                    class="img-fluid rounded" alt="{{ $item->name }}">
+                                                                Nama : {{ $item->name }}<br>
+                                                                Kategori : {{ $item->category->name }}<br>
+                                                                Harga : {{ $item->price }}<br>
+                                                                Stok : {{ $item->stock }}<br>
+                                                                Status : {{ $item->status }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('product.destroy', $item->id) }}"
+                                                                type="button" class="btn btn-danger">Delete</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+
+                                            @php
+                                                $no++;
+                                            @endphp
+                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -122,10 +150,10 @@
 @endsection
 
 @section('script')
-    {{-- Aos Init --}}
-    {{-- <script>
+    {{-- Datatable init --}}
+    <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
-    </script> --}}
+    </script>
 @endsection

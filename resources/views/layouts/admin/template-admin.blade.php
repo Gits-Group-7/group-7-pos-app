@@ -16,9 +16,6 @@
     {{-- Datatable boostrap --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css" />
 
-    {{-- Aos Js animation --}}
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
     @yield('css')
 
     {{-- Taskbar Icon --}}
@@ -75,12 +72,6 @@
 
     {{-- Datatable boostrap js --}}
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.js"></script>
-
-    {{-- AOS Js script --}}
-    {{-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> --}}
-    {{-- <script>
-        AOS.init();
-    </script> --}}
 
     @yield('script')
 </body>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
@@ -23,7 +25,12 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        return view('pages.admin.dashboard');
+        $data = [
+            'productsCount' => Product::count(),
+            'categoriesCount' => Category::count(),
+        ];
+
+        return view('pages.admin.dashboard', $data);
     }
 
     public function doRegister(Request $request)

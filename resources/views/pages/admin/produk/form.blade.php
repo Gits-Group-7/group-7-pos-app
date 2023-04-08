@@ -1,7 +1,7 @@
 @extends('layouts.admin.template-admin')
 
 @section('title')
-    <title>Tambah Produk | POS APP</title>
+    <title>Update Produk | POS APP</title>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
                     <div class="alert  alert-success alert-dismissible fade show" role="alert">
                         <span class="badge badge-pill badge-success px-3 py-2">Selamat Datang
                             {{ Auth::user()->name }}</span>&ensp;
-                        di Halaman Tambah Produk
+                        di Halaman Update Produk
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -21,9 +21,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Form Tambah Data Produk</strong>
-                            <p class="mt-2 text-secondary">Silahkan isi field sesuai dengan data Produk yang ingin Anda
-                                tambahkan.</p>
+                            <strong class="card-title">Form Update Data Produk</strong>
+                            <p class="mt-2 text-secondary">Silahkan ganti field data Produk sesuai dengan yang Anda
+                                perlukan.</p>
                         </div>
                     </div>
                 </div>
@@ -42,6 +42,7 @@
                                 <div class="card-body">
                                     <form action="{{ $action }}" class="forms-sample" method="POST"
                                         enctype="multipart/form-data">
+                                        @method('put')
                                         @csrf
 
                                         <div class="row">
@@ -50,7 +51,8 @@
                                                     <label for="name">Nama</label>
                                                     <input type="text"
                                                         class="form-control @error('name') is-invalid @enderror"
-                                                        id="name" placeholder="Nama Produk" name="name">
+                                                        id="name" placeholder="Nama Produk" name="name"
+                                                        value="{{ $products->name }}">
                                                 </div>
                                                 @if ($errors->has('name'))
                                                     <div class="invalid feedback text-danger mb-3">
@@ -66,7 +68,10 @@
                                                         id="category_id" name="category_id">
                                                         <option value="">Pilih Kategori Produk</option>
                                                         @foreach ($categories as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                            <option value="{{ $item->id }}"
+                                                                {{ $products->category_id == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -105,8 +110,13 @@
                                                     <select class="form-control @error('condition') is-invalid @enderror"
                                                         id="condition" name="condition">
                                                         <option value="">Pilih Kondisi Produk</option>
-                                                        <option value="Baru">Baru</option>
-                                                        <option value="Like a New">Like a New</option>
+                                                        <option value="Baru"
+                                                            {{ $products->condition == 'Baru' ? 'selected' : '' }}>Baru
+                                                        </option>
+                                                        <option value="Like a New"
+                                                            {{ $products->condition == 'Like a New' ? 'selected' : '' }}>
+                                                            Like a
+                                                            New</option>
                                                     </select>
                                                 </div>
                                                 @if ($errors->has('condition'))
@@ -122,7 +132,7 @@
                                                     <input type="number"
                                                         class="form-control @error('price') is-invalid @enderror"
                                                         id="price" placeholder="Harga Produk" name="price"
-                                                        min="0">
+                                                        min="0" value="{{ $products->price }}">
                                                 </div>
                                                 @if ($errors->has('price'))
                                                     <div class="invalid feedback text-danger mb-3">
@@ -137,7 +147,7 @@
                                                     <input type="number"
                                                         class="form-control @error('stock') is-invalid @enderror"
                                                         id="stock" placeholder="Jumlah Stok Produk" name="stock"
-                                                        min="0">
+                                                        min="0" value="{{ $products->stock }}">
                                                 </div>
                                                 @if ($errors->has('stock'))
                                                     <div class="invalid feedback text-danger mb-3">
@@ -152,7 +162,7 @@
                                                     <input type="number"
                                                         class="form-control @error('warranty') is-invalid @enderror"
                                                         id="warranty" placeholder="Tahun Garansi" name="warranty"
-                                                        min="0">
+                                                        min="0" value="{{ $products->warranty }}">
                                                 </div>
                                                 @if ($errors->has('warranty'))
                                                     <div class="invalid feedback text-danger mb-3">
@@ -167,9 +177,15 @@
                                                     <select class="form-control @error('status') is-invalid @enderror"
                                                         id="status" name="status">
                                                         <option value="">Pilih Status Produk</option>
-                                                        <option value="Tersedia">Tersedia</option>
-                                                        <option value="Habis">Habis</option>
-                                                        <option value="Pre Order">Pre Order</option>
+                                                        <option value="Tersedia"
+                                                            {{ $products->status == 'Tersedia' ? 'selected' : '' }}>
+                                                            Tersedia</option>
+                                                        <option value="Habis"
+                                                            {{ $products->status == 'Habis' ? 'selected' : '' }}>Habis
+                                                        </option>
+                                                        <option value="Pre Order"
+                                                            {{ $products->status == 'Pre Order' ? 'selected' : '' }}>Pre
+                                                            Order</option>
                                                     </select>
                                                 </div>
                                                 @if ($errors->has('status'))
@@ -182,12 +198,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="description">Deskripsi</label>
-                                                    <textarea class="form-control" id="description" rows="4" name="description" placeholder="Deskripsi Produk"></textarea>
+                                                    <textarea class="form-control" id="description" rows="4" name="description" placeholder="Deskripsi Produk">
+                                                    {{ $products->description }}
+                                                    </textarea>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary mr-2">Tambah</button>
+                                        <button type="submit" class="btn btn-primary mr-2">Update</button>
                                         <a href="{{ route('product.index') }}"
                                             class="btn btn-outline-primary shadow-sm">Batal</a>
                                     </form>

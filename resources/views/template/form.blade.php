@@ -1,8 +1,8 @@
 @extends('layouts.admin.template-admin')
 
 @section('title')
-    <title>Form Page | POS APP</title>
-@endsection 
+    <title>Update Page | POS APP</title>
+@endsection
 
 @section('content')
     <div class="content-wrapper">

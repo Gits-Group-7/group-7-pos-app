@@ -34,14 +34,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin-chart', [PageController::class, 'chartPage'])->name('admin.chart');
 
     // Route Category
-    Route::get('/index-kategori', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('/tambah-kategori', [CategoryController::class, 'create'])->name('category.create');
-    Route::get('/edit-kategori/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::get('/hapus-kategori/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-    Route::post('/simpan-kategori', [CategoryController::class, 'store'])->name('category.store');
-    Route::put('/ubah-kategori/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/admin/index-kategori', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/admin/tambah-kategori', [CategoryController::class, 'create'])->name('category.create');
+    Route::get('/admin/edit-kategori/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::get('/admin/hapus-kategori/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::post('/admin/simpan-kategori', [CategoryController::class, 'store'])->name('category.store');
+    Route::put('/admin/ubah-kategori/{id}', [CategoryController::class, 'update'])->name('category.update');
 
     // Route Produk
-    Route::get('/index-produk', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/tambah-produk', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/admin/index-produk', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/admin/tambah-produk', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/admin/edit-produk/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/admin/hapus-produk/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::post('/admin/simpan-produk', [ProductController::class, 'store'])->name('product.store');
+    Route::put('/admin/ubah-produk/{id}', [ProductController::class, 'update'])->name('product.update');
 });

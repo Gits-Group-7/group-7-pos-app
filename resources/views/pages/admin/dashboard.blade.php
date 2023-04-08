@@ -46,40 +46,48 @@
                 <div class="row">
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
-                            <div class="card-body">
-                                <p class="mb-4">Today’s Bookings</p>
-                                <p class="fs-30 mb-2">4006</p>
-                                <p>10.00% (30 days)</p>
-                            </div>
+                            <a href="{{ route('product.index') }}" class="menu-card">
+                                <div class="card-body">
+                                    <p class="mb-4 font-weight-bold">Manajemen Produk</p>
+                                    <p class="fs-30 mb-2">4006</p>
+                                    <p>CRUD Data Product</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-dark-blue">
-                            <div class="card-body">
-                                <p class="mb-4">Total Bookings</p>
-                                <p class="fs-30 mb-2">61344</p>
-                                <p>22.00% (30 days)</p>
-                            </div>
+                            <a href="{{ route('category.index') }}" class="menu-card">
+                                <div class="card-body">
+                                    <p class="mb-4 font-weight-bold">Manajemen Kategori</p>
+                                    <p class="fs-30 mb-2">61344</p>
+                                    <p>CRUD Data Category</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                         <div class="card card-light-blue">
-                            <div class="card-body">
-                                <p class="mb-4">Number of Meetings</p>
-                                <p class="fs-30 mb-2">34040</p>
-                                <p>2.00% (30 days)</p>
-                            </div>
+                            <a href="#!" class="menu-card">
+                                <div class="card-body">
+                                    <p class="mb-4 font-weight-bold">List Data Tranksaksi</p>
+                                    <p class="fs-30 mb-2">34040</p>
+                                    <p>Datatable Data Transaction</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6 stretch-card transparent">
                         <div class="card card-light-danger">
-                            <div class="card-body">
-                                <p class="mb-4">Number of Clients</p>
-                                <p class="fs-30 mb-2">47033</p>
-                                <p>0.22% (30 days)</p>
-                            </div>
+                            <a href="#!" class="menu-card">
+                                <div class="card-body">
+                                    <p class="mb-4 font-weight-bold">List Data Detail Tranksaksi</p>
+                                    <p class="fs-30 mb-2">47033</p>
+                                    <p>Datatable Data Transaction Details</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -89,23 +97,30 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body card-hover rounded">
-                        <p class="card-title">Datatable Sample</p>
+                        <p class="card-title">Transaction Data List</p>
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table id="example" class="display expandable-table" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Quote#</th>
-                                                <th>Product</th>
-                                                <th>Business type</th>
-                                                <th>Policy holder</th>
-                                                <th>Premium</th>
+                                                <th>Id</th>
+                                                <th>Order Date</th>
                                                 <th>Status</th>
-                                                <th>Updated at</th>
-                                                <th></th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>8 April 2023</td>
+                                                <td>Success Order</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>9 April 2023</td>
+                                                <td>Transaction Proccess</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

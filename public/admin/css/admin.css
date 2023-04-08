@@ -7,3 +7,8 @@
     text-align: center !important;
     vertical-align: middle !important;
 }
+
+.menu-card {
+    text-decoration: none !important;
+    color: white !important;
+}

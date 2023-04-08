@@ -77,10 +77,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.js"></script>
 
     {{-- AOS Js script --}}
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
+    {{-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> --}}
+    {{-- <script>
         AOS.init();
-    </script>
+    </script> --}}
 
     @yield('script')
 </body>

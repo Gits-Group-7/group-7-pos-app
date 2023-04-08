@@ -9,7 +9,7 @@
         <div class="animated fadeIn">
             <div class="row justify-content-start">
                 <div class="col-sm-12">
-                    <div class="alert  alert-success alert-dismissible fade show" role="alert" data-aos="fade-down">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
                         <span class="badge badge-pill badge-success px-3 py-2">Selamat Datang
                             {{ Auth::user()->name }}</span>&ensp;
                         di Manajemen data Kategori
@@ -129,9 +129,10 @@
 @endsection
 
 @section('script')
-    <script>
+    {{-- AOS init --}}
+    {{-- <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
-    </script>
+    </script> --}}
 @endsection

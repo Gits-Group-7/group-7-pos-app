@@ -9,7 +9,7 @@
         <div class="animated fadeIn">
             <div class="row justify-content-start">
                 <div class="col-sm-12">
-                    <div class="alert  alert-success alert-dismissible fade show" role="alert" data-aos="fade-down">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
                         <span class="badge badge-pill badge-success px-3 py-2">Selamat Datang
                             {{ Auth::user()->name }}</span>&ensp;
                         di Halaman Tambah Produk
@@ -108,7 +108,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="warranty">Garansi (tahun)</label>
+                                                    <label for="warranty">Garansi (Tahun)</label>
                                                     <input type="number" class="form-control" id="warranty"
                                                         placeholder="Tahun Garansi" name="warranty" min="0">
                                                 </div>

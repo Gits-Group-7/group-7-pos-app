@@ -83,7 +83,7 @@
                         <i class="ti-user text-primary"></i>
                         Account
                     </a>
-                    <a href="/" class="dropdown-item">
+                    <a href="{{ route('customer.beranda') }}" class="dropdown-item">
                         <i class="ti-home text-primary"></i>
                         Beranda
                     </a>

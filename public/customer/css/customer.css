@@ -30,7 +30,7 @@ body {
 }
 
 .text-theme-two {
-    color: #f76e11 !important;
+    color: #10a19d !important;
 }
 
 .text-heart {
@@ -60,7 +60,7 @@ body {
 .btn-theme {
     background-color: #4b49ac !important;
     color: white !important;
-    border: white 2px solid !important;
+    border: transparent 2px solid !important;
     border-radius: 6px !important;
 }
 
@@ -107,7 +107,7 @@ body {
 
 .ready-content {
     color: white !important;
-    background-color: #4b49ac !important;
+    background-color: #10a19d !important;
 }
 
 .run-out-content {
@@ -186,4 +186,31 @@ body {
     background: #3194db;
     color: #fff;
     text-decoration: none;
+}
+
+.fw-medium {
+    font-weight: 600 !important;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.logo-1 {
+    display: block; /* tampilkan logo satu */
+}
+
+.logo-2 {
+    display: none; /* sembunyikan logo dua */
+}
+
+/* media query untuk layar kurang dari 450 pixel */
+@media (max-width: 450px) {
+    .logo-1 {
+        display: none; /* sembunyikan logo satu */
+    }
+
+    .logo-2 {
+        display: block; /* tampilkan logo dua */
+    }
 }

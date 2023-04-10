@@ -7,7 +7,8 @@
                 <!-- Left elements -->
                 <div class="col-lg-2 col-sm-4 col-4">
                     <a href="{{ route('customer.beranda') }}" class="float-start">
-                        <img src="{{ asset('admin/images/gws-logo.png') }}" height="50" />
+                        <img class="logo-1" src="{{ asset('admin/images/gws-logo.png') }}" height="50" />
+                        <img class="logo-2" src="{{ asset('admin/images/title-logo-new.svg') }}" height="50" />
                     </a>
                 </div>
                 <!-- Left elements -->
@@ -77,18 +78,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('customer.beranda') }}">Beranda</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#smartphone">Smartphone</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#laptop">Laptop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#kamera">Kamera</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#monitor">Monitor</a>
-                    </li>
+
+                    @foreach ($category_nav as $item)
+                        <li class="nav-item">
+                            <a class="nav-link" href="#{{ underscore($item->name) }}">{{ $item->name }}</a>
+                        </li>
+                    @endforeach
+
                     <!-- Navbar dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -98,16 +94,16 @@
                         <!-- Dropdown menu -->
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="#">Storage Device</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Gaming Device</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Sparepart PC</a>
+                                <a class="dropdown-item" href="#">Promo</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Support</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Abous Us</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Join with Us</a>
                             </li>
                         </ul>
                     </li>

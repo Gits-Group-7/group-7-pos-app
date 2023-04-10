@@ -58,7 +58,7 @@
                 <!-- Grid column -->
                 <div class="col-12 col-sm-12 col-lg-3">
                     <!-- Links -->
-                    <h6 class="text-uppercase text-black mb-2">Contact Us</h6>
+                    <h6 class="text-uppercase text-black mb-2 fw-bold">Contact Us</h6>
                     <a class="text-decoration-none text-theme fw-bold" href="mailto: gws.service@shopify.com"
                         target="_blank">gws.service@shopify.com</a>
                     <p class="text-secondary pt-2">Jalan Medan Merdeka Barat Nomor 12, Gambir, Jakarta Pusat, DKI

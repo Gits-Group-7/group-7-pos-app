@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Waktu pembuatan: 08 Apr 2023 pada 11.25
+-- Waktu pembuatan: 10 Apr 2023 pada 10.27
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.0
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_pos_app`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `total_price` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `carts`
+--
+
+INSERT INTO `carts` (`id`, `product_id`, `quantity`, `total_price`, `created_at`, `updated_at`) VALUES
+(5, '9de831da-5d89-4257-81bf-df6650a882a7', 3, 42720000, '2023-04-10 01:20:19', '2023-04-10 01:25:45');
 
 -- --------------------------------------------------------
 
@@ -42,8 +64,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
 ('0c3cf847-18f5-43b2-b11a-26a1b50e8670', 'Gaming Device', 'Meliputi Device Gaming, Setup Gaming dan Sparepart Gaming', 'Aktif', '2023-04-08 00:55:44', '2023-04-08 01:54:13'),
-('239a8611-689a-4ed2-9229-ea5e243edc2b', 'Laptop', 'Meliputi Perangkat Laptop, Mobile Device, dan PC', 'Aktif', '2023-04-08 00:55:13', '2023-04-08 00:55:13'),
-('b98e3ee6-68ac-44d5-9024-4cd6bf995371', 'Smarphone', 'Meliputi Smartphone, Handphone Tablet dan Lain-lain', 'Aktif', '2023-04-08 00:54:36', '2023-04-08 00:54:36');
+('239a8611-689a-4ed2-9229-ea5e243edc2b', 'Laptop', 'Meliputi Perangkat Laptop, Mobile Device, dan PC', 'Aktif', '2023-04-08 00:55:13', '2023-04-09 17:49:37'),
+('b98e3ee6-68ac-44d5-9024-4cd6bf995371', 'Smartphone', 'Meliputi Smartphone, Handphone Tablet dan Lain-lain', 'Aktif', '2023-04-08 00:54:36', '2023-04-09 18:04:45');
 
 -- --------------------------------------------------------
 
@@ -83,7 +105,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2023_04_08_013730_create_categories_table', 1),
-(6, '2023_04_08_013749_create_products_table', 1);
+(6, '2023_04_08_013749_create_products_table', 1),
+(7, '2023_04_10_071134_create_carts_table', 2);
 
 -- --------------------------------------------------------
 
@@ -142,7 +165,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `photo`, `price`, `stock`, `description`, `warranty`, `condition`, `status`, `created_at`, `updated_at`) VALUES
-('0107b6d8-2008-417b-b96b-d544e3067cd6', '0c3cf847-18f5-43b2-b11a-26a1b50e8670', 'SAMSUNG Odyssey Ark 55 Inch', 'public/product/0jVRKaHlhkTitV2JBlsHy7wSnBtHBSMZc1whLfYf.jpg', 14900000, 23, 'Standing screen display size : ‎55 Inches\r\nScreen Resolution : 2560 x 1440\r\nMax Screen Resolution: 3,840 x 2,160 Pixels\r\nNumber of USB 2.0 Ports : 2', 3, 'Baru', 'Tersedia', '2023-04-08 01:56:15', '2023-04-08 02:18:03');
+('0107b6d8-2008-417b-b96b-d544e3067cd6', '0c3cf847-18f5-43b2-b11a-26a1b50e8670', 'SAMSUNG Odyssey Ark 55 Inch', 'public/product/0jVRKaHlhkTitV2JBlsHy7wSnBtHBSMZc1whLfYf.jpg', 14900000, 23, 'Standing screen display size : ‎55 Inches\r\nScreen Resolution : 2560 x 1440\r\nMax Screen Resolution: 3,840 x 2,160 Pixels\r\nNumber of USB 2.0 Ports : 2', 3, 'Baru', 'Tersedia', '2023-04-08 01:56:15', '2023-04-09 19:13:44'),
+('9de831da-5d89-4257-81bf-df6650a882a7', '239a8611-689a-4ed2-9229-ea5e243edc2b', 'Apple 2022 MacBook Air', 'public/product/MWUYmPyrUM5tRRClGuu1xdkSTRsXzTxz1c1IGgmK.jpg', 14240000, 21, 'All-Day Battery Life – Go longer than ever with up to 18 hours of battery life.\r\nPowerful Performance – Take on everything from professional-quality editing to action-packed gaming with ease. The Apple M1 chip with an 8-core CPU delivers up to 3.5x faster performance than the previous generation while using way less power.\r\nSuperfast Memory – 8GB of unified memory makes your entire system speedy and responsive. That way it can support tasks like memory-hogging multitab browsing and opening a huge graphic file quickly and easily.', 3, 'Baru', 'Pre Order', '2023-04-09 17:28:55', '2023-04-10 00:50:08');
 
 -- --------------------------------------------------------
 
@@ -171,6 +195,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `carts_product_id_foreign` (`product_id`);
 
 --
 -- Indeks untuk tabel `categories`
@@ -224,6 +255,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -233,7 +270,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -250,6 +287,12 @@ ALTER TABLE `users`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `carts`
+--
+ALTER TABLE `carts`
+  ADD CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `products`

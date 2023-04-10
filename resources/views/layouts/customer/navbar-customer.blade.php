@@ -20,7 +20,7 @@
                             <i class="fa-solid fa-store m-1 me-md-2"></i>
                             <p class="d-none d-md-block mb-0">Toko</p>
                         </a>
-                        <a href="{{ route('customer.cart') }}"
+                        <a href="{{ route('cart.index') }}"
                             class="btn-theme me-1 py-1 px-3 nav-link d-flex align-items-center">
                             <i class="fas fa-shopping-cart m-1 me-md-2"></i>
                             <p class="d-none d-md-block mb-0">Keranjang</p>

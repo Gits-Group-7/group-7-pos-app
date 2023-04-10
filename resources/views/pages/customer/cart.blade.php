@@ -49,63 +49,83 @@
                         <div class="m-4">
                             <h4 class="card-title mb-4">Daftar Produk Keranjang</h4>
 
-                            @foreach ($products as $item)
-                                <div class="row gy-3 mb-4">
-                                    <div class="col-lg-7">
-                                        <div class="me-lg-5">
-                                            <div class="d-flex pt-3">
-                                                <img src="{{ Storage::url($item->photo) }}" class="border rounded me-3 p-2"
-                                                    style="width: 96px; height: 96px;" />
-                                                <div class="">
-                                                    <a href="#" class="nav-link pt-2 fw-bold">{{ $item->name }}</a>
-                                                    <span class="text-muted">Kategori :
-                                                        {{ $item->category->name }}</span><br>
-                                                    <span class="text-muted">Kondisi : {{ $item->condition }}</span>
+                            @if (DB::table('carts')->count())
+                                @foreach ($cart_products as $item)
+                                    <div class="row gy-3 mb-4">
+                                        <div class="col-lg-7">
+                                            <div class="me-lg-5">
+                                                <div class="d-flex pt-3">
+                                                    <img src="{{ Storage::url($item->photo) }}"
+                                                        class="border rounded me-3 p-2"
+                                                        style="width: 96px; height: 96px;" />
+                                                    <div class="">
+                                                        <a href="#"
+                                                            class="nav-link pt-2 fw-bold">{{ $item->name }}</a>
+                                                        <span class="text-muted">
+                                                            Kategori :
+                                                            @foreach ($category_name as $value)
+                                                                @if ($item->product_id == $value->id)
+                                                                    {{ $value->category->name }}
+                                                                @endif
+                                                            @endforeach
+                                                        </span><br>
+                                                        <span class="text-muted">Kondisi : {{ $item->condition }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-5 d-flex">
+                                            <div class="row mx-auto">
+                                                <div class="col">
+                                                    <div class="pt-2">
+                                                        <small class="text-muted text-nowrap"> Rp.
+                                                            {{ priceConversion($item->price) }} /
+                                                            per item
+                                                        </small> <br>
+                                                        <span class="h6 fw-bold">
+                                                            Total :<br>
+                                                            Rp. {{ priceConversion($item->total_price) }}
+                                                        </span>
+
+                                                        {{-- manage cart --}}
+                                                        <form action="{{ route('cart.update', $item->id) }}" method="POST">
+                                                            @method('put')
+                                                            @csrf
+
+                                                            <div class="form-group">
+                                                                <input type="number" class="form-control mt-3"
+                                                                    id="quantity" name="quantity"
+                                                                    value="{{ $item->quantity }}" min="1"
+                                                                    max="99">
+                                                            </div>
+                                                            {{-- </form> --}}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col d-flex">
+                                                    <div class="float-md-start my-auto">
+                                                        <button type="submit" class="btn btn-checklist px-2">
+                                                            <i class="fa-solid fa-check fa-lg px-1"></i>
+                                                        </button>
+                                                        </form>
+
+                                                        <a href="{{ route('cart.delete', $item->id) }}"
+                                                            class="btn btn-delete px-2">
+                                                            <i class="fa-solid fa-trash fa-lg px-1"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-lg-5 d-flex">
-                                        <div class="row mx-auto">
-                                            <div class="col">
-                                                <div class="pt-2">
-                                                    <small class="text-muted text-nowrap"> Rp.
-                                                        {{ priceConversion($item->price) }} /
-                                                        per item
-                                                    </small> <br>
-                                                    <span class="h6 fw-bold">Total : Rp. 10.000</span>
-
-                                                    {{-- manage cart --}}
-                                                    <form action="" method="POST">
-                                                        @method('put')
-                                                        @csrf
-
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control mt-3" id="quantity"
-                                                                name="quantity" value="1" min="1"
-                                                                max="99">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                            <div class="col d-flex">
-                                                <div class="float-md-start my-auto">
-                                                    <button type="submit" class="btn btn-checklist px-2">
-                                                        <i class="fa-solid fa-check fa-lg px-1"></i>
-                                                    </button>
-                                                    </form>
-
-                                                    <a href="" class="btn btn-delete px-2">
-                                                        <i class="fa-solid fa-trash fa-lg px-1"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @else
+                                <span>
+                                    Silahkan tambahkan data produk terlebih dahulu.
+                                    <a href="{{ route('customer.beranda') }}">Beranda</a>
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -153,7 +173,7 @@
             <div class="row">
                 <div class="slider owl-carousel owl-theme">
                     @foreach ($products as $value)
-                        <form action="" method="POST">
+                        <form action="{{ route('cart.store', $value->id) }}" method="POST">
                             @csrf
 
                             <div class="item col-md-12 d-flex justify-content-center p-1">
@@ -195,10 +215,15 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-checklist icon-cart-hover mt-2"
-                                        title="Add to cart?">
-                                        ADD TO CART
-                                    </button>
+                                    @if ($carts->contains('product_id', $value->id))
+                                        <a href="#!" type="button" class="btn btn-checklist-on icon-cart-hover mt-2"
+                                            title="Produk ada di keranjang"> On My Cart
+                                        </a>
+                                    @else
+                                        <button type="submit" class="btn btn-checklist icon-cart-hover mt-2"
+                                            title="Tambah ke keranjang?"> ADD TO CART
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </form>

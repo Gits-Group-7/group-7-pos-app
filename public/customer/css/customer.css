@@ -99,6 +99,13 @@ body {
     border-radius: 6px !important;
 }
 
+.btn-checklist-on {
+    background-color: white !important;
+    color: #4b49ac !important;
+    border: #4b49ac 2px solid !important;
+    border-radius: 6px !important;
+}
+
 .btn-delete {
     background-color: #fc4f4f !important;
     color: white !important;

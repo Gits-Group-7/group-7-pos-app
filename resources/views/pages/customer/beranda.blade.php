@@ -119,7 +119,7 @@
 
                                 @foreach ($products as $value)
                                     @if ($item->category_id == $value->category_id)
-                                        <form action="" method="POST">
+                                        <form action="{{ route('cart.store', $value->id) }}" method="POST">
                                             @csrf
 
                                             <div class="item col-md-12 d-flex justify-content-center p-1">
@@ -164,11 +164,20 @@
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-checklist icon-cart-hover mt-2"
-                                                        title="Add to cart?"> ADD TO CART
-                                                    </button>
+                                                    @if ($carts->contains('product_id', $value->id))
+                                                        <a href="#!" type="button"
+                                                            class="btn btn-checklist-on icon-cart-hover mt-2"
+                                                            title="Produk ada di keranjang"> On My Cart
+                                                        </a>
+                                                    @else
+                                                        <button type="submit"
+                                                            class="btn btn-checklist icon-cart-hover mt-2"
+                                                            title="Tambah ke keranjang?"> ADD TO CART
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </div>
+
                                         </form>
                                     @endif
                                 @endforeach

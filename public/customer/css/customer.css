@@ -60,7 +60,7 @@ body {
 .btn-theme {
     background-color: #4b49ac !important;
     color: white !important;
-    border: transparent 2px solid !important;
+    border: white 2px solid !important;
     border-radius: 6px !important;
 }
 
@@ -72,16 +72,44 @@ body {
 }
 
 .btn-theme-two {
-    background-color: #f76e11 !important;
+    background-color: #fc4f4f !important;
     color: white !important;
-    border: white 2px solid !important;
+    border: transparent 2px solid !important;
     border-radius: 6px !important;
 }
 
 .btn-theme-two:hover {
     background-color: white !important;
-    color: #f76e11 !important;
-    border: #f76e11 2px solid !important;
+    color: #fc4f4f !important;
+    border: #fc4f4f 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-checklist {
+    background-color: #4b49ac !important;
+    color: white !important;
+    border: transparent 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-checklist:hover {
+    background-color: white !important;
+    color: #4b49ac !important;
+    border: #4b49ac 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-delete {
+    background-color: #fc4f4f !important;
+    color: white !important;
+    border: transparent 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-delete:hover {
+    background-color: white !important;
+    color: #fc4f4f !important;
+    border: #fc4f4f 2px solid !important;
     border-radius: 6px !important;
 }
 

@@ -18,25 +18,24 @@
         $slug = explode('-', $date);
         return $slug[2] . ' ' . $month[(int) $slug[1]] . ' ' . $slug[0];
     }
-
+    
     function priceConversion($price)
     {
         $formattedPrice = number_format($price, 0, ',', '.');
         return $formattedPrice;
     }
-
+    
     // fungsi auto repair one word
     function underscore($string)
     {
         // Ubah string menjadi lowercase
         $string = strtolower($string);
-
+    
         // Ganti spasi dengan underscore
         $string = str_replace(' ', '_', $string);
-
+    
         return $string;
     }
-
 @endphp
 
 @section('content')
@@ -165,7 +164,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-theme icon-cart-hover mt-2"
+                                                    <button type="submit" class="btn btn-checklist icon-cart-hover mt-2"
                                                         title="Add to cart?"> ADD TO CART
                                                     </button>
                                                 </div>

@@ -33,4 +33,14 @@ class PageController extends Controller
 
         return view('pages.customer.beranda', $data);
     }
+
+    public function cartPage()
+    {
+        $data = [
+            'products' => Product::all(),
+            'category_nav' => Category::select('name')->where('status', 'Aktif')->orderBy('name', 'asc')->get(),
+        ];
+
+        return view('pages.customer.cart', $data);
+    }
 }

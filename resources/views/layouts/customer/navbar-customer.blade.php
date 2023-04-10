@@ -20,7 +20,8 @@
                             <i class="fa-solid fa-store m-1 me-md-2"></i>
                             <p class="d-none d-md-block mb-0">Toko</p>
                         </a>
-                        <a href="" class="btn-theme me-1 py-1 px-3 nav-link d-flex align-items-center">
+                        <a href="{{ route('customer.cart') }}"
+                            class="btn-theme me-1 py-1 px-3 nav-link d-flex align-items-center">
                             <i class="fas fa-shopping-cart m-1 me-md-2"></i>
                             <p class="d-none d-md-block mb-0">Keranjang</p>
                         </a>
@@ -81,7 +82,8 @@
 
                     @foreach ($category_nav as $item)
                         <li class="nav-item">
-                            <a class="nav-link" href="#{{ underscore($item->name) }}">{{ $item->name }}</a>
+                            <a class="nav-link"
+                                href="{{ route('customer.beranda') }}#{{ underscore($item->name) }}">{{ $item->name }}</a>
                         </li>
                     @endforeach
 

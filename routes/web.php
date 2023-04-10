@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route Beranda Cuustomer
 Route::get('/', [PageController::class, 'berandaPage'])->name('customer.beranda');
+Route::get('/keranjang', [PageController::class, 'cartPage'])->name('customer.cart');
 
 // route action logout (available customer & admin)
 Route::get('/logout', [AuthController::class, "logout"])->name('logout.page');

@@ -153,24 +153,28 @@
                             <div class="card-title">
                                 <span class="fw-bold">Daftar Produk Cart :</span>
                             </div>
-                            <ul type="po">
 
-                                @foreach ($cart_products as $item)
-                                    <li>
-                                        <p class="mb-2">
-                                            <span class="limit-text-title fw-medium" title="{{ $item->name }}">
-                                                {{ $item->name }}
-                                            </span>
-                                            <span class="limit-text-title">
-                                                Jumlah({{ $item->quantity }}) :
-                                                <i>Rp.
-                                                    {{ priceConversion($item->total_price) }}
-                                                </i>
-                                            </span>
-                                        </p>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            @if (DB::table('carts')->count())
+                                <ul>
+                                    @foreach ($cart_products as $item)
+                                        <li>
+                                            <p class="mb-2">
+                                                <span class="limit-text-title fw-medium" title="{{ $item->name }}">
+                                                    {{ $item->name }}
+                                                </span>
+                                                <span class="limit-text-title">
+                                                    Jumlah({{ $item->quantity }}) :
+                                                    <i>Rp.
+                                                        {{ priceConversion($item->total_price) }}
+                                                    </i>
+                                                </span>
+                                            </p>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <span>Tidak ada produk yang ditambahkan ke Keranjang</span>
+                            @endif
 
                             <hr>
                             <div class="d-flex justify-content-between">
@@ -178,10 +182,18 @@
                                 <p class="mb-2 fw-bold">Rp. {{ priceConversion($total_price_cart) }}</p>
                             </div>
 
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Beli Sekarang</button>
-                            </div>
+                            @if (DB::table('carts')->count())
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">Beli Sekarang</button>
+                                </div>
+                            @else
+                                <div class="mt-3">
+                                    <a href="{{ route('customer.beranda') }}" type="submit"
+                                        class="btn btn-checklist w-100 shadow-0 mb-2" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Mohon Tambahkan Produk</a>
+                                </div>
+                            @endif
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-
-class Product extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
@@ -29,26 +28,9 @@ class Product extends Model
     }
 
     protected $fillable = [
-        'category_id',
-        'name',
-        'photo',
-        'price',
-        'stock',
-        'description',
-        'warranty',
-        'condition',
+        'order_date',
         'status',
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
-
-    public function carts()
-    {
-        return $this->belongsTo(Cart::class, 'product_id', 'id');
-    }
 
     public function transaction_detail()
     {

@@ -1,66 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# GITS UTS Group 7 Project - POS APP (Gadget Web Store) 🛒
 
-## About Laravel
+"Gadget Web Store" merupakan sebuah aplikasi yang menggambarkan kegiatan toko online yang menawarkan produk teknologi atau gadget yang dapat diakses dari mana saja melalui web browser. Aplikasi ini mendukung berbagai operasi seperti halnya untuk memanajemen data produk yang dapat dilakukan oleh Admin secara langsung menggunakan fitur CMS.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Members of This Project 🚀
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Leader : Taufik Hidayat
+- Members 1st : Dinda Hirya Hirmaya
+- Members 2nd : Nurfanis Mulyana
+- Members 3rd : Sholeh Budi Utomo
+- Members 4rd : Silviana
+## Features or Stack 🤖
 
-## Learning Laravel
+- Authentication (Register, Login, & Logout)
+- CMS for Admin (CRUD Product, & CRUD Category)
+- Upload Image Product using Storage
+- Add to Cart System for Customer (Guest)
+- Transaction System for Customer (Guest)
+- Transaction Log Management for Customer (Guest)
+- Catalog Product for Customer (Guest)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Function Features ✨
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Sebagai identifikasi dan pembatas untuk pengguna dalam melakukan operasi pada aplikasi.
+- CMS sebuah aplikasi atau platform yang memungkinkan pengguna untuk membuat, mengelola, dan mengatur konten di sebuah situs web, dalam hal ini yaitu pada konten Manajemen data oleh pengguna Admin.
+- Fungsi upload data image product menggunakan storage, yaitu memungkinkan pengguna untuk mengunggah gambar produk ke server atau penyimpanan cloud yang ditentukan oleh aplikasi atau platform.
+- Fitur "add to cart" pada aplikasi biasanya digunakan dalam konteks e-commerce, dan fungsinya adalah memungkinkan pengguna untuk menambahkan produk yang mereka ingin beli ke dalam keranjang belanjaan mereka, untuk memudahkan proses pembayaran pada tahap selanjutnya.
+- Fitur "transaction system" pada aplikasi biasanya berkaitan dengan fungsi pembayaran dan manajemen transaksi keuangan dalam aplikasi. Dalam hal ini pada aplikasi kami masih belum mengimplementasikan "Transaction" yang sebenarnya (backend).
+- Fitur "transaction log management" pada aplikasi berfungsi untuk mencatat, memantau, dan mengelola log transaksi pada aplikasi setelah pengguna berhasil melakukan transaksi.
+- Fitur "catalog product" pada aplikasi berfungsi untuk menampilkan daftar atau katalog produk yang dijual pada aplikasi tersebut. Dalam hal ini yaitu Katalog Produk ditampilkan pada Beranda website.
+## Installation 🎨
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- start with clone this project
+```bash
+  git clone https://github.com/Gits-Group-7/group-7-pos-app.git
+```
+- install composer (*if you dont have artisan)
+```bash
+  composer install
+```
+- make database db_pos_app on mysql
+```bash
+  create database db_pos_app;
+```
+- modify file .env - change database dan port mysql
+```bash
+  database = db_pos_app
+  port = 3306
+```
+- import database on this project to your mysql (*option 1)
+```bash
+  "check database file on this project and please insert manual to your database on php my admin"
+```
+- running migration to your mysql (*option 2)
+```bash
+  php artisan migrate
+```
+- running migration to your mysql with seed (*option 3 & recommended) - still not added yet
+```bash
+  php artisan migrate:fresh --seed
+```
+- making storage folder link to your public folder
+```bash
+  php artisan storage:link
+```
+- starts the app
+```bash
+  php artisan serve
+```
+- for best practice, please modify image photo product from CMS Admin on this url
+```bash
+  http://127.0.0.1/admin/index-produk
+```
+- thank you, your app have been succesfully runned into your system
+## Support and Question 👀
 
-## Laravel Sponsors
+For support, email leader of this project : taufikhidayat09121@gmail.com, Thank you 🤍
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

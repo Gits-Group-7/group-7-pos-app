@@ -40,14 +40,29 @@
 
 @section('content')
     <!-- cart + summary -->
-    <section class="my-4">
+    <section class="my-5">
         <div class="container">
             <div class="row">
                 <!-- cart -->
-                <div class="col-lg-9">
+                <div class="col-lg-9 mb-4">
                     <div class="card border shadow-sm card-hover">
                         <div class="m-4">
-                            <h4 class="card-title mb-4">Daftar Produk Keranjang</h4>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col-sm-5 d-flex">
+                                    <div class="mx-auto mx-auto">
+                                        <h4 class="card-title mb-4 alert alert-primary mt-3">Daftar Produk Keranjang</h4>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 d-flex">
+                                    <div class="mx-auto my-auto">
+                                        <div class="mt-3">
+                                            <a href="{{ route('customer.transaction') }}"
+                                                class="btn btn-checklist w-100 shadow-0 mb-2">Manajemen
+                                                Tranksaksi</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             @if (DB::table('carts')->count())
                                 @foreach ($cart_products as $item)
@@ -164,8 +179,31 @@
                             </div>
 
                             <div class="mt-3">
-                                <a href="#" class="btn btn-checklist w-100 shadow-0 mb-2">Beli Sekarang</a>
+                                <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Beli Sekarang</button>
                             </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Proses Tranksaksi Sekarang?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        {{-- <div class="modal-body"></div> --}}
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-unconfirm"
+                                                data-bs-dismiss="modal">Batal</button>
+                                            <a href="{{ route('customer.transaction') }}" type="button"
+                                                class="btn btn-confirm">Oke</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -222,7 +260,8 @@
                                     </div>
 
                                     @if ($carts->contains('product_id', $value->id))
-                                        <a href="#!" type="button" class="btn btn-checklist-on icon-cart-hover mt-2"
+                                        <a href="#!" type="button"
+                                            class="btn btn-checklist-on icon-cart-hover mt-2"
                                             title="Produk ada di keranjang"> On My Cart
                                         </a>
                                     @else

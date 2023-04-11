@@ -85,6 +85,20 @@ body {
     border-radius: 6px !important;
 }
 
+.btn-confirm {
+    background-color: #4b49ac !important;
+    color: white !important;
+    border: transparent 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-unconfirm {
+    background-color: white !important;
+    color: #4b49ac !important;
+    border: #4b49ac 2px solid !important;
+    border-radius: 6px !important;
+}
+
 .btn-checklist {
     background-color: #4b49ac !important;
     color: white !important;
@@ -96,6 +110,20 @@ body {
     background-color: white !important;
     color: #4b49ac !important;
     border: #4b49ac 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-cancel {
+    background-color: white !important;
+    color: #ff597b !important;
+    border: #ff597b 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-cancel:hover {
+    background-color: #ff597b !important;
+    color: white !important;
+    border: white 2px solid !important;
     border-radius: 6px !important;
 }
 

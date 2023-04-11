@@ -97,7 +97,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body card-hover rounded">
-                        <p class="card-title">Transaction Data List</p>
+                        <p class="card-title">Tabel data Detail Tranksaksi</p>
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
@@ -105,20 +105,23 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Order Date</th>
-                                                <th>Status</th>
+                                                <th>Id Transaksi</th>
+                                                <th>Nama Produk</th>
+                                                <th>Jumlah Produk</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>8 April 2023</td>
-                                                <td>Success Order</td>
+                                                <td>1</td>
+                                                <td>Laptop</td>
+                                                <td>34</td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td>9 April 2023</td>
-                                                <td>Transaction Proccess</td>
+                                                <td>1</td>
+                                                <td>Headset I Phone</td>
+                                                <td>41</td>
                                             </tr>
                                         </tbody>
                                     </table>

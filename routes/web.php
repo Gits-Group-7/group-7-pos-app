@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 // Route Beranda Cuustomer
 Route::get('/', [PageController::class, 'berandaPage'])->name('customer.beranda');
 
+// Route Transaction
+Route::get('/manajemen-transaksi', [PageController::class, 'transactionPage'])->name('customer.transaction');
+Route::get('/proses-transaksi/{id}', [PageController::class, 'proccessPage'])->name('customer.transaction.proccess');
+Route::get('/detail-transaksi/{id}', [PageController::class, 'detailPage'])->name('customer.transaction.detail');
+
 // route action logout (available customer & admin)
 Route::get('/logout', [AuthController::class, "logout"])->name('logout.page');
 

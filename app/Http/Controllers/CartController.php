@@ -18,6 +18,7 @@ class CartController extends Controller
     public function index()
     {
         $data = [
+            'total_price_cart' => DB::table('carts')->sum('total_price'),
             'carts' => Cart::orderBy('created_at', 'desc')->get(),
             'category_name' => Product::all(),
             'products' => Product::where('status', '!=', 'Habis')->get(),

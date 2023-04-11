@@ -135,26 +135,32 @@
                 <div class="col-lg-3">
                     <div class="card shadow-sm border card-hover">
                         <div class="card-body">
-                            @foreach ($products as $item)
-                                <div class="d-flex">
-                                    <p class="mb-2">
-                                        <span class="limit-text-title fw-medium" title="{{ $item->name }}">
-                                            {{ $item->name }}
-                                        </span>
-                                        <span class="limit-text-title">
-                                            Jumlah(5) :
-                                            <i>Rp.
-                                                {{ priceConversion($item->price) }}
-                                            </i>
-                                        </span>
-                                    </p>
-                                </div>
-                            @endforeach
+                            <div class="card-title">
+                                <span class="fw-bold">Daftar Produk Cart :</span>
+                            </div>
+                            <ul type="po">
+
+                                @foreach ($cart_products as $item)
+                                    <li>
+                                        <p class="mb-2">
+                                            <span class="limit-text-title fw-medium" title="{{ $item->name }}">
+                                                {{ $item->name }}
+                                            </span>
+                                            <span class="limit-text-title">
+                                                Jumlah({{ $item->quantity }}) :
+                                                <i>Rp.
+                                                    {{ priceConversion($item->total_price) }}
+                                                </i>
+                                            </span>
+                                        </p>
+                                    </li>
+                                @endforeach
+                            </ul>
 
                             <hr>
                             <div class="d-flex justify-content-between">
                                 <p class="mb-2 fw-bold">Total :</p>
-                                <p class="mb-2 fw-bold">IDR 337.500</p>
+                                <p class="mb-2 fw-bold">Rp. {{ priceConversion($total_price_cart) }}</p>
                             </div>
 
                             <div class="mt-3">

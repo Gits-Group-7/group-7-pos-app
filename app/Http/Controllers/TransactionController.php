@@ -6,10 +6,9 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CartController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,7 @@ class CartController extends Controller
     public function index()
     {
         $data = [
-            'transaction' => Transaction::all(),
-            'last_transaction' => Transaction::latest()->first(),
+            'transactions' => Transaction::orderBy('status', 'desc')->orderBy('order_date', 'desc')->get(),
             'total_price_cart' => DB::table('carts')->sum('total_price'),
             'carts' => Cart::orderBy('created_at', 'desc')->get(),
             'category_name' => Product::all(),
@@ -29,7 +27,7 @@ class CartController extends Controller
             'cart_products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
         ];
 
-        return view('pages.customer.cart', $data);
+        return view('pages.customer.tranksaksi.transaction-manage', $data);
     }
 
     /**
@@ -48,19 +46,14 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store()
     {
-        //  mengambil data product
-        $product = Product::find($id);
-
         // validasi field satu persatu sebelum melakukan insert
-        Cart::create([
-            'product_id' => $product->id,
-            'quantity' => 1,
-            'total_price' => $product->price,
+        Transaction::create([
+            'status' => 'Transaction Proccess',
         ]);
 
-        return redirect()->route('cart.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -71,7 +64,13 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'total_price_cart' => DB::table('carts')->sum('total_price'),
+            'category_nav' => Category::select('name')->where('status', 'Aktif')->orderBy('name', 'asc')->get(),
+            'cart_products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
+        ];
+
+        return view('pages.customer.tranksaksi.details-transaction', $data);
     }
 
     /**
@@ -82,7 +81,15 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'transaction'  => Transaction::find($id),
+            'action' => route('customer.transaction.update', $id),
+            'total_price_cart' => DB::table('carts')->sum('total_price'),
+            'category_nav' => Category::select('name')->where('status', 'Aktif')->orderBy('name', 'asc')->get(),
+            'cart_products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
+        ];
+
+        return view('pages.customer.tranksaksi.proccess-transaction', $data);
     }
 
     /**
@@ -92,24 +99,18 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        // mengambil data price product
-        $cart = Cart::find($id);
-        $searchProduct = $cart->product_id;
-        $price = Product::where('id', $searchProduct)->value('price');
+        $newStatus['status'] = 'Success Order'; // status baru yang ingin diassign
 
-        // mengambil data field quantity
-        $quantity = $request->input('quantity');
-        $fix_quantity = intval($quantity);
+        // Atau update status menggunakan Eloquent ORM
+        $transaction = Transaction::find($id);
 
-        // proses update
-        Cart::where('id', $id)->update([
-            'quantity' => $quantity,
-            'total_price' => $price * $fix_quantity,
-        ]);
+        // proses update status
+        $transaction->status = $newStatus['status'];
+        $transaction->save();
 
-        return redirect()->route('cart.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -120,9 +121,9 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        $data = Cart::findOrFail($id);
+        $data = Transaction::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('cart.index');
+        return redirect()->route('transaction.index');
     }
 }

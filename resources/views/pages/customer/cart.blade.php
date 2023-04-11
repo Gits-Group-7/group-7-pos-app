@@ -49,16 +49,16 @@
                         <div class="m-4">
                             <div class="row d-flex justify-content-between">
                                 <div class="col-sm-5 d-flex">
-                                    <div class="mx-auto mx-auto">
+                                    <div class="mx-auto">
                                         <h4 class="card-title mb-4 alert alert-primary mt-3">Daftar Produk Keranjang</h4>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 d-flex">
                                     <div class="mx-auto my-auto">
                                         <div class="mt-3">
-                                            <a href="{{ route('customer.transaction') }}"
-                                                class="btn btn-checklist w-100 shadow-0 mb-2">Manajemen
-                                                Tranksaksi</a>
+                                            <a href="{{ route('transaction.index') }}"
+                                                class="btn btn-checklist w-100 shadow-0 mb-2">Daftar
+                                                Transaksi Saya</a>
                                         </div>
                                     </div>
                                 </div>
@@ -183,15 +183,29 @@
                             </div>
 
                             @if (DB::table('carts')->count())
-                                <div class="mt-3">
-                                    <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal">Beli Sekarang</button>
-                                </div>
+                                @if (DB::table('transactions')->count())
+                                    @if ($last_transaction->status == 'Success Order')
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal">Beli Sekarang</button>
+                                        </div>
+                                    @else
+                                        <div class="mt-3">
+                                            <a href="{{ route('transaction.index') }}" type="button"
+                                                class="btn btn-checklist w-100 shadow-0 mb-2">Selesaikan Proses
+                                                Transaksi</a>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Beli Sekarang</button>
+                                    </div>
+                                @endif
                             @else
                                 <div class="mt-3">
                                     <a href="{{ route('customer.beranda') }}" type="submit"
-                                        class="btn btn-checklist w-100 shadow-0 mb-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">Mohon Tambahkan Produk</a>
+                                        class="btn btn-checklist w-100 shadow-0 mb-2">Mohon Tambahkan Produk</a>
                                 </div>
                             @endif
 
@@ -201,7 +215,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Proses Tranksaksi Sekarang?</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Transaksi?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -209,7 +223,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-unconfirm"
                                                 data-bs-dismiss="modal">Batal</button>
-                                            <a href="{{ route('customer.transaction') }}" type="button"
+                                            <a href="{{ route('transaction.store') }}" type="button"
                                                 class="btn btn-confirm">Oke</a>
                                         </div>
                                     </div>

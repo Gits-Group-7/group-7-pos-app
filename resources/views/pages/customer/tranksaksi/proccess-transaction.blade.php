@@ -82,10 +82,15 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-4">
-                        <div class="mt-2">
-                            <a href="{{ route('customer.transaction') }}"
-                                class="btn btn-checklist w-100 shadow-0 mb-2">Checkout Tranksaksi</a>
-                        </div>
+                        <form action="{{ $action }}" method="POST">
+                            @method('put')
+                            @csrf
+
+                            <div class="mt-2">
+                                <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2">Checkout
+                                    Transaksi</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

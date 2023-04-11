@@ -1,7 +1,7 @@
 @extends('layouts.customer.template-customer')
 
 @section('title')
-    <title>Manajemen Tranksaksi | Gadget Web Store</title>
+    <title>Manajemen Transaksi | Gadget Web Store</title>
 @endsection
 
 @php
@@ -30,71 +30,109 @@
     
         return $string;
     }
+    
+    function timestampConversion($timestamp)
+    {
+        // Format tanggal dan waktu asli
+        $dateString = $timestamp;
+    
+        // Mengkonversi format menjadi waktu yang mudah dibaca
+        $data = strtotime($dateString);
+        $date = date('d-m-Y', $data);
+        $time = date('H:i:s', $data);
+    
+        // konversi tanggal
+        $month = [1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $slug = explode('-', $date);
+        $result_date = $slug[0] . ' ' . $month[(int) $slug[1]] . ' ' . $slug[2];
+    
+        $result = $result_date . ' ' . '(' . $time . ')';
+        return $result;
+    }
 @endphp
 
 @section('content')
     <!-- cart + summary -->
     <section class="my-5">
         <div class="container">
-            <h4 class="card-title mb-4 alert alert-primary mt-3">Manajemen Tranksaksi</h4>
+            <h4 class="card-title mb-4 alert alert-primary mt-3">Manajemen Transaksi</h4>
 
             <div class="row">
-                <div class="col-lg-3 mb-3">
-                    <div class="card shadow-sm border card-hover">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <span class="fw-bold">Detail Transaksi :</span>
-                            </div>
+                @foreach ($transactions as $item)
+                    <div class="col-lg-3 mb-3">
+                        <div class="card shadow-sm border card-hover">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <span class="fw-bold">Detail Transaksi :</span>
+                                </div>
 
-                            <span class="">
-                                Tanggal Order :
-                                <i>11 April 2023</i>
-                            </span>
-                            <span class="">
-                                Status :
-                                <i>Transaction Proccess</i>
-                            </span>
+                                <span class="">
+                                    <b>Tanggal Order :</b><br>
+                                    <i>{{ timestampConversion($item->order_date) }}</i>
+                                </span>
+                                <br>
+                                <span class="">
+                                    <b>Status :</b>
+                                    <i>{{ $item->status }}</i>
+                                </span>
 
-                            <div class="mt-3">
-                                <a href="#" class="btn btn-cancel w-100 shadow-0 mb-2">Batalkan / Delete
-                                    Tranksaksi</a>
-                            </div>
-                            <div class="mt-2">
-                                <a href="{{ route('customer.transaction.proccess', 1) }}"
-                                    class="btn btn-checklist w-100 shadow-0 mb-2">Checkout Sekarang</a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hapus transaksi?
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <i>*note : proses checkout akan dibatalkan jika anda menghapus data
+                                                    transaksi.</i><br><br>
+                                                <span><b>Tanggal Order :</b>
+                                                    {{ timestampConversion($item->order_date) }}</span><br>
+                                                <span><b>Status :</b> {{ $item->status }}</span>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-checklist"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <a href="{{ route('transaction.destroy', $item->id) }}" type="button"
+                                                    class="btn btn-hapus">Hapus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if ($item->status == 'Success Order')
+                                    <div class="mt-3">
+                                        <button type="submit" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $item->id }}"
+                                            class="btn btn-cancel w-100 shadow-0 mb-2">Delete
+                                            Log Transaksi</button>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="{{ route('customer.transaction.detail', $item->id) }}"
+                                            class="btn btn-checklist w-100 shadow-0 mb-2">Lihat
+                                            Transaksi</a>
+                                    </div>
+                                @else
+                                    <div class="mt-3">
+                                        <button type="submit" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $item->id }}"
+                                            class="btn btn-cancel w-100 shadow-0 mb-2">Batalkan / Delete
+                                            Transaksi</button>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="{{ route('customer.transaction.proccess', $item->id) }}"
+                                            class="btn btn-checklist w-100 shadow-0 mb-2">Checkout Sekarang</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-lg-3 mb-3">
-                    <div class="card shadow-sm border card-hover">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <span class="fw-bold">Detail Transaksi :</span>
-                            </div>
-
-                            <span class="">
-                                Tanggal Order :
-                                <i>11 April 2023</i>
-                            </span>
-                            <span class="">
-                                Status :
-                                <i>Success Order</i>
-                            </span>
-
-                            <div class="mt-3">
-                                <a href="#" class="btn btn-cancel w-100 shadow-0 mb-2">Delete
-                                    Log Tranksaksi</a>
-                            </div>
-                            <div class="mt-2">
-                                <a href="{{ route('customer.transaction.detail', 1) }}"
-                                    class="btn btn-checklist w-100 shadow-0 mb-2">Lihat
-                                    Tranksaksi</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

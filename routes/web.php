@@ -5,15 +5,19 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 // Route Beranda Cuustomer
 Route::get('/', [PageController::class, 'berandaPage'])->name('customer.beranda');
 
 // Route Transaction
-Route::get('/manajemen-transaksi', [PageController::class, 'transactionPage'])->name('customer.transaction');
-Route::get('/proses-transaksi/{id}', [PageController::class, 'proccessPage'])->name('customer.transaction.proccess');
-Route::get('/detail-transaksi/{id}', [PageController::class, 'detailPage'])->name('customer.transaction.detail');
+Route::get('/manajemen-transaksi', [TransactionController::class, 'index'])->name('transaction.index');
+Route::get('/tambah-transaksi', [TransactionController::class, 'store'])->name('transaction.store');
+Route::get('/hapus-transaksi/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
+Route::get('/proses-transaksi/{id}', [TransactionController::class, 'edit'])->name('customer.transaction.proccess'); // edit
+Route::put('/update-transaksi/{id}', [TransactionController::class, 'update'])->name('customer.transaction.update'); // update (backend)
+Route::get('/detail-transaksi/{id}', [TransactionController::class, 'show'])->name('customer.transaction.detail');
 
 // route action logout (available customer & admin)
 Route::get('/logout', [AuthController::class, "logout"])->name('logout.page');

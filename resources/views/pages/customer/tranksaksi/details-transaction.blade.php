@@ -83,8 +83,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-4">
                         <div class="mt-2">
-                            <a href="{{ route('customer.transaction') }}" class="btn btn-checklist w-100 shadow-0 mb-2">Cek
-                                Manajemen Tranksaksi</a>
+                            <a href="{{ route('transaction.index') }}" class="btn btn-checklist w-100 shadow-0 mb-2">Tutup
+                                Detail Transaksi</a>
                         </div>
                     </div>
                 </div>

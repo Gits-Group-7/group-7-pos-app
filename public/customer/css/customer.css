@@ -113,6 +113,20 @@ body {
     border-radius: 6px !important;
 }
 
+.btn-hapus {
+    background-color: #ff597b !important;
+    color: white !important;
+    border: transparent 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-hapus:hover {
+    background-color: white !important;
+    color: #ff597b !important;
+    border: #ff597b 2px solid !important;
+    border-radius: 6px !important;
+}
+
 .btn-cancel {
     background-color: white !important;
     color: #ff597b !important;

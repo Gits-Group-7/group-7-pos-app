@@ -291,9 +291,16 @@
                                             title="Produk ada di keranjang"> On My Cart
                                         </a>
                                     @else
-                                        <button type="submit" class="btn btn-checklist icon-cart-hover mt-2"
-                                            title="Tambah ke keranjang?"> ADD TO CART
-                                        </button>
+                                        @if ($value->status == 'Habis' || $value->status == 'Pre Order')
+                                            <a href="#!" type="button"
+                                                class="btn btn-checklist-on icon-cart-hover mt-2"
+                                                title="Produk ada di keranjang"> Product Unavailable
+                                            </a>
+                                        @else
+                                            <button type="submit" class="btn btn-checklist icon-cart-hover mt-2"
+                                                title="Tambah ke keranjang?"> ADD TO CART
+                                            </button>
+                                        @endif
                                     @endif
                                 </div>
                             </div>

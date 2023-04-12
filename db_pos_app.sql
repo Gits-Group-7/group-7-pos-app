@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Waktu pembuatan: 12 Apr 2023 pada 01.32
+-- Waktu pembuatan: 12 Apr 2023 pada 08.29
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_po`
+-- Database: `db_pos_test`
 --
 
 -- --------------------------------------------------------
@@ -56,12 +56,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
-('1', 'Smartphone', 'Meliputi Smartphone, Handphone Tablet dan Lain-lain', 'Aktif', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('2', 'Laptop', 'Meliputi Perangkat Laptop, Mobile Device, dan PC', 'Aktif', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('3', 'Kamera', 'Meliputi Kamera, Lensa dan Lain-lain', 'Aktif', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('4', 'Monitor', 'Meliputi Monitor, LED TV dan Lain-lain', 'Aktif', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('5', 'Storage Device', 'Meliputi Flashdisk, Memory Card, Harddisk & SSD', 'Aktif', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('6', 'Gaming Device', 'Meliputi Device Gaming, Setup Gaming dan Sparepart Gaming', 'Aktif', '2023-04-11 16:25:37', '2023-04-11 16:25:37');
+('1', 'Smartphone', 'Meliputi Smartphone, Handphone Tablet dan Lain-lain', 'Aktif', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('2', 'Laptop', 'Meliputi Perangkat Laptop, Mobile Device, dan PC', 'Aktif', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('3', 'Kamera', 'Meliputi Kamera, Lensa dan Lain-lain', 'Aktif', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('4', 'Monitor', 'Meliputi Monitor, LED TV dan Lain-lain', 'Aktif', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('5', 'Storage Device', 'Meliputi Flashdisk, Memory Card, Harddisk & SSD', 'Aktif', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('6', 'Gaming Device', 'Meliputi Device Gaming, Setup Gaming dan Sparepart Gaming', 'Aktif', '2023-04-11 23:28:52', '2023-04-11 23:28:52');
 
 -- --------------------------------------------------------
 
@@ -163,12 +163,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `photo`, `price`, `stock`, `description`, `warranty`, `condition`, `status`, `created_at`, `updated_at`) VALUES
-('05ae6372-1f38-40ce-a01b-e0a08b152e14', '2', 'Apple MacBook Air with 1.1GHz Core i3', 'null', 9400000, 20, 'Intel Core i3 processor1.1GHz dual-core 10th-generation, 13.3 inch 1440 x 900 LED IPS, 8 GB LPDDR3 2133 MHz, SSD 256GB-IND, macOS', 2, 'Baru', 'Tersedia', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('1918f320-552d-4251-875f-b7e0bbce6c17', '4', 'SAMSUNG 32\" Odyssey G55A QHD 165Hz 1ms FreeSync Curved', 'null', 6415000, 15, 'WQHD resolution and HDR10 boasts incredibly detailed, pin-sharp images, 165Hz refresh rate and 1ms response time to reduce lag and ghosting, Adaptive Sync technology allows fast-action and stutter-free with AMD FreeSync Premium', 3, 'Baru', 'Pre Order', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('65eea67c-ab8a-4665-b98f-bba35fe37917', '1', 'Google Pixel 4a Smartphone', 'null', 1775000, 10, 'Google Pixel 4a merupakan HP dengan layar 5.8\" dan tingkat densitas piksel sebesar 413ppi. Ia dilengkapi dengan kamera belakang 12.2MP dan kamera depan 8MP. HP ini juga hadir dengan kapasitas baterai 3140mAh. Google Pixel 4a dirilis pada: 2020', 3, 'Baru', 'Tersedia', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('93400d47-47a3-444e-8c66-f92fe2c8873f', '3', 'Logitech C920x HD Pro Webcam, Full HD 1080p/30fps', 'null', 1045000, 1, 'Resolusi Maks.: 1080 p/30 fps - 720p/ 30 fps, Kamera mega pixel: 3, Jenis fokus: Autofocus, Jenis lensa: Kaca, Mikrofon internal: Stereo, Jangkauan mikrofon: Maksimal 1 m, Bidang pandang diagonal (dFoV):: 78°, Universal clip yang kompatibel dengan tripod ini cocok dengan berbagai laptop, LCD, atau monitor 1Tripod tidak disertakan', 1, 'Like a New', 'Habis', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('94f9c0f1-6d85-4910-ad8e-3b4021ccb8c5', '6', 'NUBWO G06 Wireless Gaming Headset with Microphone for PS5, PS4, PC', 'null', 745000, 5, 'The Ultimate In-game Sound Experience - Benamkan diri Anda dalam audio stereo yang kaya dengan headset gaming nirkabel NUBWO, yang dirancang khusus untuk PS5, PS4, dan perangkat gaming lainnya. Driver 50mm dan 2 driver kamar ganda menghasilkan suara yang tajam dan kuat yang menempatkan Anda tepat di tengah-tengah aksi. Lossless Wireless Connectivity - Ucapkan selamat tinggal pada kabel yang kusut dan nikmati kenyamanan permainan nirkabel. Headset NUBWO memiliki konektivitas nirkabel 2.4GHz melalui dongle USB untuk konsol dan PC, memastikan koneksi yang stabil dan bebas lag.', 1, 'Baru', 'Tersedia', '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-('afb2bd04-b786-46f1-a72d-e4f86d7436ca', '5', '850 PRO SATA III 2.5 inch SSD', 'null', 1595000, 25, 'Samsung SSD 870 EVO 250GB 500GB 1TB 2.5\" SATA III Internal SSD. The perfect choice for creators, IT professionals or everyday users, the latest 870 EVO has indisputable performance, reliability and compatibility built upon Samsungs pioneering technology.', 1, 'Baru', 'Pre Order', '2023-04-11 16:25:37', '2023-04-11 16:25:37');
+('11d04a84-292d-4bce-8c28-5f587b253862', '6', 'NUBWO G06 Wireless Gaming Headset with Microphone for PS5, PS4, PC', 'null', 745000, 5, 'The Ultimate In-game Sound Experience - Benamkan diri Anda dalam audio stereo yang kaya dengan headset gaming nirkabel NUBWO, yang dirancang khusus untuk PS5, PS4, dan perangkat gaming lainnya. Driver 50mm dan 2 driver kamar ganda menghasilkan suara yang tajam dan kuat yang menempatkan Anda tepat di tengah-tengah aksi. Lossless Wireless Connectivity - Ucapkan selamat tinggal pada kabel yang kusut dan nikmati kenyamanan permainan nirkabel. Headset NUBWO memiliki konektivitas nirkabel 2.4GHz melalui dongle USB untuk konsol dan PC, memastikan koneksi yang stabil dan bebas lag.', 1, 'Baru', 'Tersedia', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('4c75cd4b-0a68-4172-91df-5c7e12a08ab2', '2', 'Apple MacBook Air with 1.1GHz Core i3', 'null', 9400000, 20, 'Intel Core i3 processor1.1GHz dual-core 10th-generation, 13.3 inch 1440 x 900 LED IPS, 8 GB LPDDR3 2133 MHz, SSD 256GB-IND, macOS', 2, 'Baru', 'Tersedia', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('9b3e3168-959f-43d0-8d07-666bb7d0ae53', '1', 'Google Pixel 4a Smartphone', 'null', 1775000, 10, 'Google Pixel 4a merupakan HP dengan layar 5.8\" dan tingkat densitas piksel sebesar 413ppi. Ia dilengkapi dengan kamera belakang 12.2MP dan kamera depan 8MP. HP ini juga hadir dengan kapasitas baterai 3140mAh. Google Pixel 4a dirilis pada: 2020', 3, 'Baru', 'Tersedia', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('9ce2a696-d4bf-4df6-a29b-ed8baf2552f3', '3', 'Logitech C920x HD Pro Webcam, Full HD 1080p/30fps', 'null', 1045000, 1, 'Resolusi Maks.: 1080 p/30 fps - 720p/ 30 fps, Kamera mega pixel: 3, Jenis fokus: Autofocus, Jenis lensa: Kaca, Mikrofon internal: Stereo, Jangkauan mikrofon: Maksimal 1 m, Bidang pandang diagonal (dFoV):: 78°, Universal clip yang kompatibel dengan tripod ini cocok dengan berbagai laptop, LCD, atau monitor 1Tripod tidak disertakan', 1, 'Like a New', 'Habis', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('9d610414-ecde-4398-9533-f8ff43b3dec6', '4', 'SAMSUNG 32\" Odyssey G55A QHD 165Hz 1ms FreeSync Curved', 'null', 6415000, 15, 'WQHD resolution and HDR10 boasts incredibly detailed, pin-sharp images, 165Hz refresh rate and 1ms response time to reduce lag and ghosting, Adaptive Sync technology allows fast-action and stutter-free with AMD FreeSync Premium', 3, 'Baru', 'Pre Order', '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+('e23929f8-775c-47ef-8e1d-2001325a5826', '5', '850 PRO SATA III 2.5 inch SSD', 'null', 1595000, 25, 'Samsung SSD 870 EVO 250GB 500GB 1TB 2.5\" SATA III Internal SSD. The perfect choice for creators, IT professionals or everyday users, the latest 870 EVO has indisputable performance, reliability and compatibility built upon Samsungs pioneering technology.', 1, 'Baru', 'Pre Order', '2023-04-11 23:28:52', '2023-04-11 23:28:52');
 
 -- --------------------------------------------------------
 
@@ -195,6 +195,7 @@ CREATE TABLE `transaction_details` (
   `transaction_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `total_price` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -221,8 +222,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$7En2pJQDkOoV7SZ.gvnyNenEy1s91KJ5uwfIM606QdaqV1hIepNzC', NULL, '2023-04-11 16:25:37', '2023-04-11 16:25:37'),
-(2, 'Admin GWS', 'admingws@gmail.com', NULL, '$2y$10$/4VtGtNn1ZjbgBrCfooo3OkclDJ2EktTsYwBTuytEObB6u8kAMK2y', NULL, '2023-04-11 16:25:37', '2023-04-11 16:25:37');
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$PYzgun2qEtPc6ru5BkyMce7p4rPeIHh.3pPNk9l5BQGgaY3y89nUi', NULL, '2023-04-11 23:28:52', '2023-04-11 23:28:52'),
+(2, 'Admin GWS', 'admingws@gmail.com', NULL, '$2y$10$.iSMvY8OFpDaeb72Vyk/7Omwz5Ft91n7DRQo8cdrfOWasLv/3ibJS', NULL, '2023-04-11 23:28:52', '2023-04-11 23:28:52');
 
 --
 -- Indexes for dumped tables

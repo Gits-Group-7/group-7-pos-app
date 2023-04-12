@@ -67,12 +67,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                         <div class="card card-light-blue">
                             <a href="#!" class="menu-card">
                                 <div class="card-body">
-                                    <p class="mb-4 font-weight-bold">List Data Tranksaksi</p>
+                                    <p class="mb-4 font-weight-bold">List Data Transaksi</p>
                                     <p class="fs-30 mb-2">34040</p>
                                     <p>Datatable Data Transaction</p>
                                 </div>
@@ -83,21 +83,21 @@
                         <div class="card card-light-danger">
                             <a href="#!" class="menu-card">
                                 <div class="card-body">
-                                    <p class="mb-4 font-weight-bold">List Data Detail Tranksaksi</p>
+                                    <p class="mb-4 font-weight-bold">List Data Detail Transaksi</p>
                                     <p class="fs-30 mb-2">47033</p>
                                     <p>Datatable Data Transaction Details</p>
                                 </div>
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body card-hover rounded">
-                        <p class="card-title">Tabel data Detail Tranksaksi</p>
+                        <p class="card-title">Tabel data Detail Transaksi</p>
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
@@ -105,24 +105,28 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Id Transaksi</th>
+                                                <th>Kode Transaksi</th>
                                                 <th>Nama Produk</th>
                                                 <th>Jumlah Produk</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Laptop</td>
-                                                <td>34</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>1</td>
-                                                <td>Headset I Phone</td>
-                                                <td>41</td>
-                                            </tr>
+                                            @php
+                                                $no = 1;
+                                            @endphp
+
+                                            @foreach ($transaction_details as $item)
+                                                <tr>
+                                                    <td>{{ $no }}</td>
+                                                    <td>{{ $item->transaction_id }}</td>
+                                                    <td>{{ $item->product->name }}</td>
+                                                    <td>{{ $item->quantity }}</td>
+                                                </tr>
+
+                                                @php
+                                                    $no++;
+                                                @endphp
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -133,4 +137,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {{-- Datatable init --}}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 @endsection

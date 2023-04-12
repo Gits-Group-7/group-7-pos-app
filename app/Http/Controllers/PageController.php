@@ -8,21 +8,6 @@ use App\Models\Product;
 
 class PageController extends Controller
 {
-    public function buttonPage()
-    {
-        return view('template.button');
-    }
-
-    public function formPage()
-    {
-        return view('template.form');
-    }
-
-    public function chartPage()
-    {
-        return view('template.chart');
-    }
-
     public function berandaPage()
     {
         $data = [
@@ -34,4 +19,20 @@ class PageController extends Controller
 
         return view('pages.customer.beranda', $data);
     }
+
+    // template function route (tidak dipakai)
+    // public function buttonPage()
+    // {
+    //     return view('template.button');
+    // }
+
+    // public function formPage()
+    // {
+    //     return view('template.form');
+    // }
+
+    // public function chartPage()
+    // {
+    //     return view('template.chart');
+    // }
 }

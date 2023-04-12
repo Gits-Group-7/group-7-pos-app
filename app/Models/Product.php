@@ -47,7 +47,7 @@ class Product extends Model
 
     public function carts()
     {
-        return $this->belongsTo(Cart::class, 'product_id', 'id');
+        return $this->hasMany(Cart::class);
     }
 
     public function transaction_detail()

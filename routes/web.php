@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/simpan-produk', [ProductController::class, 'store'])->name('product.store');
     Route::put('/admin/ubah-produk/{id}', [ProductController::class, 'update'])->name('product.update');
 
-    // Route Template Page (tidak dipakai)
+    // Route Template Page (route tidak dipakai)
     // Route::get('/admin-button', [PageController::class, 'buttonPage'])->name('admin.button');
     // Route::get('/admin-form', [PageController::class, 'formPage'])->name('admin.form');
     // Route::get('/admin-chart', [PageController::class, 'chartPage'])->name('admin.chart');

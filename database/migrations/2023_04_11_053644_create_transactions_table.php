@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->timestamp('order_date')->default(DB::raw('CURRENT_TIMESTAMP'))->nullable(false);
-            $table->string('status')->nullable(false);
+            $table->string('status', 20)->nullable(false);
             $table->timestamps();
         });
     }

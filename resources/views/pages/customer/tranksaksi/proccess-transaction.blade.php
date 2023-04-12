@@ -66,16 +66,24 @@
                                 <span class="fw-bold">Detail Transaksi Produk :</span>
                             </div>
 
-                            <ul>
-                                @foreach ($cart_products as $item)
-                                    <li>
-                                        <span>
-                                            {{ $item->name }} ({{ $item->quantity }}) :
-                                            <i>Rp. {{ priceConversion($item->total_price) }}</i>
-                                        </span>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            @if (DB::table('carts')->count())
+                                <ul>
+                                    @foreach ($cart_products as $item)
+                                        <li>
+                                            <span>
+                                                {{ $item->name }} ({{ $item->quantity }}) :
+                                                <i>Rp. {{ priceConversion($item->total_price) }}</i>
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <div class="pb-3 text-secondary">
+                                    <i><u>*Mohon Tambahkan Produk Sebelum
+                                            Melakukan Checkout</u></i>
+                                </div>
+                            @endif
+
                             <span class="fw-bold">Total : Rp. {{ priceConversion($total_price_cart) }}</span>
                         </div>
                     </div>
@@ -87,8 +95,13 @@
                             @csrf
 
                             <div class="mt-2">
-                                <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2">Checkout
-                                    Transaksi</button>
+                                @if (DB::table('carts')->count())
+                                    <button type="submit" class="btn btn-checklist w-100 shadow-0 mb-2">Checkout
+                                        Transaksi</button>
+                                @else
+                                    <a href="{{ route('customer.beranda') }}" type="button"
+                                        class="btn btn-checklist w-100 shadow-0 mb-2">Saya Mengerti</a>
+                                @endif
                             </div>
                         </form>
                     </div>

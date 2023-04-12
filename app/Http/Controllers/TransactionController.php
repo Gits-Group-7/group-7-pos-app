@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
@@ -82,11 +83,11 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $data = [
-            'transaction'  => Transaction::find($id),
-            'action' => route('customer.transaction.update', $id),
             'total_price_cart' => DB::table('carts')->sum('total_price'),
             'category_nav' => Category::select('name')->where('status', 'Aktif')->orderBy('name', 'asc')->get(),
             'cart_products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
+            'transaction'  => Transaction::find($id),
+            'action' => route('customer.transaction.update', $id),
         ];
 
         return view('pages.customer.tranksaksi.proccess-transaction', $data);
@@ -101,14 +102,31 @@ class TransactionController extends Controller
      */
     public function update($id)
     {
-        $newStatus['status'] = 'Success Order'; // status baru yang ingin diassign
-
-        // Atau update status menggunakan Eloquent ORM
+        // get id transaction
         $transaction = Transaction::find($id);
+
+        // TRANSACTION DETAILS INSERT SECTION
+        $products = Cart::get();
+
+        // iterasi semua data produk dan simpan ke dalam tabel TransactionDetails
+        foreach ($products as $product_cart) {
+            $transactionDetail = new TransactionDetail();
+            $transactionDetail->transaction_id = $transaction;
+            $transactionDetail->cart_id = $product_cart->id;
+            $transactionDetail->product_id = $product_cart->product_id;
+            $transactionDetail->quantity = $product_cart->quantity;
+            $transactionDetail->save();
+        }
+
+        // TRANSACTION UPDATE SECTION
+        $newStatus['status'] = 'Success Order'; // status baru yang ingin diassign
 
         // proses update status
         $transaction->status = $newStatus['status'];
         $transaction->save();
+
+        // CART DELETE SECTION
+        DB::table('carts')->truncate();
 
         return redirect()->route('transaction.index');
     }

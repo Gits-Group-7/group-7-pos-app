@@ -8,8 +8,8 @@
 
 - Leader : Taufik Hidayat
 - Members 1st : Dinda Hirya Hirmaya
-- Members 2nd : Nurfanis Mulyana
-- Members 3rd : Sholeh Budi Utomo
+- Members 2nd : Sholeh Budi Utomo
+- Members 3rd : Nurfanis
 - Members 4rd : Silviana
 ## Features or Stack 🤖
 

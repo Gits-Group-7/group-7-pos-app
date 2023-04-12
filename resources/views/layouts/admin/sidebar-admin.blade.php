@@ -41,7 +41,8 @@
             </div>
         </li>
         <hr>
-        <li class="nav-item">
+        {{-- start template menu --}}
+        {{-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">UI Elements</span>
@@ -79,7 +80,7 @@
                     </li>
                 </ul>
             </div>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\TransactionDetail;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class AuthController extends Controller
         $data = [
             'productsCount' => Product::count(),
             'categoriesCount' => Category::count(),
+            'transaction_details' => TransactionDetail::all(),
         ];
 
         return view('pages.admin.dashboard', $data);

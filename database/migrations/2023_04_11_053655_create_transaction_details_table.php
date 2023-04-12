@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_id');
-            $table->foreignId('cart_id');
             $table->string('product_id');
             $table->unsignedInteger('quantity')->default(1);
+            $table->unsignedInteger('total_price')->default(0);
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
-            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

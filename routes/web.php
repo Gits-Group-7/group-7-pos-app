@@ -44,11 +44,6 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard admin
     Route::get('/admin/dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
 
-    // Route Template Page
-    Route::get('/admin-button', [PageController::class, 'buttonPage'])->name('admin.button');
-    Route::get('/admin-form', [PageController::class, 'formPage'])->name('admin.form');
-    Route::get('/admin-chart', [PageController::class, 'chartPage'])->name('admin.chart');
-
     // Route Category
     Route::get('/admin/index-kategori', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/admin/tambah-kategori', [CategoryController::class, 'create'])->name('category.create');
@@ -64,4 +59,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/hapus-produk/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::post('/admin/simpan-produk', [ProductController::class, 'store'])->name('product.store');
     Route::put('/admin/ubah-produk/{id}', [ProductController::class, 'update'])->name('product.update');
+
+    // Route Template Page (tidak dipakai)
+    // Route::get('/admin-button', [PageController::class, 'buttonPage'])->name('admin.button');
+    // Route::get('/admin-form', [PageController::class, 'formPage'])->name('admin.form');
+    // Route::get('/admin-chart', [PageController::class, 'chartPage'])->name('admin.chart');
 });

@@ -65,10 +65,15 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
+        $transaction_id = Transaction::find($id);
+
         $data = [
-            'total_price_cart' => DB::table('carts')->sum('total_price'),
+            'transaction_list' => DB::table('transaction_details')->join('products', 'transaction_details.product_id', '=', 'products.id')->select('transaction_details.*', 'product.name')->select('*')->where('transaction_id', '=', $transaction_id->id)->get(),
             'category_nav' => Category::select('name')->where('status', 'Aktif')->orderBy('name', 'asc')->get(),
             'cart_products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
+            'transaction'  => Transaction::find($id),
+            'total_price_transaction' => DB::table('transaction_details')->where('transaction_id', '=', $transaction_id->id)->sum('total_price'),
+            'total_price_cart' => DB::table('carts')->sum('total_price'),
         ];
 
         return view('pages.customer.tranksaksi.details-transaction', $data);
@@ -82,12 +87,16 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
+        $transaction_id = Transaction::find($id);
+
         $data = [
             'total_price_cart' => DB::table('carts')->sum('total_price'),
             'category_nav' => Category::select('name')->where('status', 'Aktif')->orderBy('name', 'asc')->get(),
             'cart_products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
             'transaction'  => Transaction::find($id),
             'action' => route('customer.transaction.update', $id),
+            'transaction_list' => DB::table('transaction_details')->join('products', 'transaction_details.product_id', '=', 'products.id')->select('transaction_details.*', 'product.name')->select('*')->where('transaction_id', '=', $transaction_id->id)->get(),
+            'total_price_transaction' => DB::table('transaction_details')->where('transaction_id', '=', $transaction_id->id)->sum('total_price'),
         ];
 
         return view('pages.customer.tranksaksi.proccess-transaction', $data);
@@ -111,11 +120,15 @@ class TransactionController extends Controller
         // iterasi semua data produk dan simpan ke dalam tabel TransactionDetails
         foreach ($products as $product_cart) {
             $transactionDetail = new TransactionDetail();
-            $transactionDetail->transaction_id = $transaction;
-            $transactionDetail->cart_id = $product_cart->id;
+            $transactionDetail->transaction_id = $transaction->id;
             $transactionDetail->product_id = $product_cart->product_id;
             $transactionDetail->quantity = $product_cart->quantity;
+            $transactionDetail->total_price = $product_cart->total_price;
             $transactionDetail->save();
+
+            // CART DELETE SECTION
+            $data = Cart::findOrFail($product_cart->id);
+            $data->delete();
         }
 
         // TRANSACTION UPDATE SECTION
@@ -124,9 +137,6 @@ class TransactionController extends Controller
         // proses update status
         $transaction->status = $newStatus['status'];
         $transaction->save();
-
-        // CART DELETE SECTION
-        DB::table('carts')->truncate();
 
         return redirect()->route('transaction.index');
     }
